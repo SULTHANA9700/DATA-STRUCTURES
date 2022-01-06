@@ -1,0 +1,188 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+    struct node* prev;
+    int data;
+    struct node* next;
+}*temp,*newnode;
+struct node* head=NULL;
+struct node* tail=NULL;
+void create()
+{
+    int val,v;
+    do
+    {
+        newnode=(struct node*)malloc(sizeof(struct node));
+        printf("enter the data\n");
+        scanf("%d",&val);
+        newnode->prev=NULL;
+        newnode->data=val;
+        newnode->next=NULL;
+        if(head==NULL){
+            head=newnode;
+            tail=newnode;
+        }
+        else{
+            tail->next=newnode;
+            newnode->prev=tail;
+            tail=newnode;
+        }
+        printf("enter 1 to continue 0 to exit");
+        scanf("%d",&v);
+    }while(v==1);
+}
+void display()
+{
+    temp=head;
+    while(temp!=NULL)
+    {
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+}
+void insert_beg()
+{
+    int ib;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    printf("enter value");
+    scanf("%d",&ib);
+    newnode->data=ib;
+    newnode->next=head;
+    head->prev=newnode;
+    newnode->prev=NULL;
+    head=newnode;
+}
+void insert_end()
+{
+    int ie;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    printf("enter value\n");
+    scanf("%d",&ie);
+    newnode->data=ie;
+    tail->next=newnode;
+    newnode->prev=tail;
+    tail=newnode;
+}
+void insert_spe()
+{
+    int ip,p;
+    temp=head;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    printf("enter value\n");
+    scanf("%d",&ip);
+    printf("enter position\n");
+    scanf("%d",&p);
+    for(int i=1;i<p-1;i++)
+    {
+        temp=temp->next;
+    }
+    newnode->data=ip;
+    newnode->next=temp->next;
+    newnode->prev=temp;
+    temp->next->prev=newnode;
+    temp->next=newnode;
+}
+void delete_beg()
+{
+    temp=head;
+    head=head->next;
+    temp->next=NULL;
+    head->prev=NULL;
+}
+void delete_end()
+{
+    temp=tail->prev;
+    temp->next=NULL;
+    tail->prev=NULL;
+    tail=temp;
+}
+void delete_spe()
+{
+    int ps;
+    temp=head;
+    printf("enter position\n");
+    scanf("%d",&ps);
+    for(int i=1;i<ps-1;i++)
+    {
+        temp=temp->next;
+    }
+    temp->next->next->prev=temp;
+    temp->next=temp->next->next;
+}
+void count()
+{
+    int count=0;
+    temp=head;
+    while(temp!=NULL)
+    {
+        temp=temp->next;
+        count=count+1;
+    }
+    printf("%d",count);
+}
+void reverse()
+{
+    temp=tail;
+    while(temp!=NULL)
+    {
+        printf("%d ",temp->data);
+        temp=temp->prev;
+    }
+}
+void main()
+{
+    int choice,j;
+    create();
+    printf("list before\n");
+    display();
+    printf("\nenter choice 1.insertion 2.deletion 3.count 4.reverse");
+    scanf("%d",&choice);
+    switch(choice)
+    {
+        case 1:printf("\nenter your choice 1.at beginning 2.at ending 3.at specified position");
+        scanf("%d",&j);
+        if(j==1){
+            insert_beg();
+            printf("after insertion\n");
+            display();
+        }
+        if(j==2){
+            insert_end();
+            printf("after insertion\n");
+            display();
+        }
+        if(j==3){
+            insert_spe();
+            printf("after insertion\n");
+            display();
+        }
+        break;
+        case 2:printf("\nenter your choice 1.at beginning 2.at ending 3.at specified position");
+        scanf("%d",&j);
+        if(j==1){
+            delete_beg();
+            printf("after deletion\n");
+            display();
+        }
+        if(j==2){
+            delete_end();
+            printf("after deletion\n");
+            display();
+        }
+        if(j==3){
+            delete_spe();
+            printf("after deletion\n");
+            display();
+        }
+        break;
+        case 3:
+        printf("total elements are");
+        count();
+        break;
+        case 4:
+        printf("elements in reverse order:");
+        reverse();
+        break;
+        default:printf("wrong choice");
+    }
+}
