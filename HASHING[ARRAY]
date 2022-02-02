@@ -1,0 +1,96 @@
+#include<stdio.h>
+#define size 10
+//initialisation
+void init(int a[])
+{ 
+    int i;
+    for(i=0;i<size;i++)
+    {
+        a[i]=0;
+    }
+}
+//hashing function
+int hashfunction(int key)
+{
+    return (key%10);
+}
+//search function
+void search(int a[])
+{
+    int s;
+    printf("enter the searching element\n");
+    scanf("%d",&s);
+    int value=hashfunction(s);
+    if(a[value]==s)
+    {
+        printf("element found\n");
+    }
+    else
+    {
+        printf("element not found\n");
+    }
+}
+//insert function
+void insert(int a[])
+{
+    int key,value,v;
+    do
+    {
+        printf("enter key\n");
+        scanf("%d",&key);
+        value=hashfunction(key);
+        a[value]=key;
+        printf("enter 1 to continue 0 to exit\n");
+        scanf("%d",&v);
+    }while(v==1);
+}
+//print function
+void print(int a[])
+{
+    int i;
+    for(i=0;i<size;i++)
+    {
+        printf("a[%d] has %d\n",i,a[i]);
+    }
+}
+//deletion function
+void delete(int a[])
+{
+    int d;
+    printf("enter the deleting element\n");
+    scanf("%d",&d);
+    int value=hashfunction(d);
+    if(a[value]==d)
+    {
+        a[value]=0;
+    }
+    else
+    {
+        printf("element to be deleted is not found\n");
+    }
+}
+//main function
+void main()
+{
+    int a[size];
+    //initialisation
+    init(a);
+    printf("enter elements\n");
+    insert(a);
+    printf("elements in the hash table are\n");
+    print(a);
+    int choice;
+    printf("enter choice 1.search 2.deletion\n");
+    scanf("%d",&choice);
+    switch(choice)
+    {
+        case 1:search(a);
+        break;
+        case 2:delete(a);
+        printf("elements in the hash table after deletion are\n");
+        print(a);
+        break;
+        default:
+        printf("wrong choice\n");
+    }
+}
