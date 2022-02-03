@@ -1,0 +1,91 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define size 10
+struct node{
+    int data;
+    struct node* next;
+}*newnode,*head[size]={NULL},*temp;
+//insertion
+void insert()
+{
+    int key,v,i;
+    do{
+        printf("enter key\n");
+        scanf("%d",&key);
+        i=key%size;
+        newnode=(struct node*)malloc(sizeof(struct node));
+        newnode->data=key;
+        newnode->next=NULL;
+        if(head[i]==NULL)
+        {
+            head[i]=newnode;
+        }
+        else
+        {
+            temp=head[i];
+            while(temp->next!=NULL)
+            {
+                temp=temp->next;
+            }
+            temp->next=newnode;
+        }
+        printf("enter 1 to continue 0 to exit");
+        scanf("%d",&v);
+    }while(v==1);
+}
+//search
+void search()
+{
+    int s,i;
+    printf("enter searching element\n");
+    scanf("%d",&s);
+    i=s%size;
+    if(head[i]==NULL)
+    {
+        printf("element not found\n");
+    }
+    else
+    {
+        for(temp=head[i];temp!=NULL;temp=temp->next)
+        {
+            if(temp->data==s)
+            {
+                printf("element is found\n");
+                break;
+            }
+        }
+        if(temp==NULL)
+        {
+            printf("element is not found\n");
+        }
+    }
+}
+//print
+void print()
+{
+    int i;
+    for(i=0;i<size;i++)
+    {
+        printf("\nthe element in the %d index is\n",i);
+        if(head[i]==NULL)
+        {
+            printf("no value\n");
+        }
+        else
+        {
+            for(temp=head[i];temp!=NULL;temp=temp->next)
+            {
+                printf("%d->",temp->data);
+            }
+        }
+    }
+}
+//main function
+void main()
+{
+    printf("enter elemnents\n");
+    insert();
+    printf("elements in the hash table are\n");
+    print();
+    search();
+}
