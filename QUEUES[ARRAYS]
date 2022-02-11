@@ -25,6 +25,14 @@ void dequeue()
         front=front+1;
     }
 }
+void display()
+{
+    int i;
+    for(i=front;i<rear;i++)
+    {
+        printf("%d ",a[front]);
+    }
+}
 void main()
 {
     int i=0,ch=0,k;
@@ -40,6 +48,9 @@ void main()
             break;
             case 2:
             dequeue();
+            break;
+            case 3:
+            display();
             break;
             default:
             printf("exit");
