@@ -37,7 +37,7 @@ void main()
 {
     int i=0,ch=0,k;
     do{
-        printf("enter 1.enqueue\n 2.dequeue\n 3.exit\n");
+        printf("enter 1.enqueue\n 2.dequeue\n 3.display\n 4.exit\n");
         scanf("%d",&ch);
         switch(ch)
         {
