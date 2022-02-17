@@ -38,9 +38,13 @@ void dequeue()
 }
 void display()
 {
-    for(int i=0;i<count;i++)
+    int j=0;
+    int k=front;
+    while(j<max)
     {
-        printf("%d ",a[i]);
+        printf("%d ",a[k]);
+        k=(k+1)%max;
+        j++;
     }
 }
 void main()
