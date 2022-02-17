@@ -30,7 +30,7 @@ void display()
     int i;
     for(i=front;i<rear;i++)
     {
-        printf("%d ",a[front]);
+        printf("%d ",a[i]);
     }
 }
 void main()
