@@ -1,0 +1,71 @@
+#include<stdio.h>
+#define max 5
+int count=0,a[max];
+int rear=0,front=0;
+void enqueue(int item)
+{
+    if(count==max)
+    {
+        printf("queue is full");
+    }
+    else
+    {
+        if(rear==max)
+        {
+            rear=0;
+        }
+        a[rear]=item;
+        rear=rear+1;
+        count=count+1;
+    }
+}
+void dequeue()
+{
+    if(count==0)
+    {
+        printf("queue is empty");
+    }
+    else
+    {
+        if(front==max)
+        {
+            front=0;
+        }
+        printf("dequeued item is %d",a[front]);
+        front=front+1;
+        count=count-1;
+    }
+}
+void display()
+{
+    for(int i=0;i<count;i++)
+    {
+        printf("%d ",a[i]);
+    }
+}
+void main()
+{
+    int i=0,ch=0,k;
+    do{
+        printf("enter 1.enqueue\n 2.dequeue\n 3.display\n");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1:
+            printf("enter element");
+            scanf("%d",&i);
+            enqueue(i);
+            break;
+            case 2:
+            dequeue();
+            break;
+            case 3:
+            display();
+            break;
+            default:
+            printf("exit");
+        }
+        printf("\nenter 1 to continue 0 to exit");
+        scanf("%d",&k);
+    }while(k==1);
+}
