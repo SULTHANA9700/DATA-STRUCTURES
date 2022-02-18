@@ -1,0 +1,131 @@
+#include<stdio.h>
+#define max 5
+int rear=0,front=0,a[max],count=0;
+void enqueuerear(int item)
+{
+    if(count==max)
+    {
+        printf("queue is full");
+    }
+    else
+    {
+        if(rear==max)
+        {
+            rear=0;
+        }
+        a[rear]=item;
+        rear=rear+1;
+        count=count+1;
+    }
+}
+void enqueuefront(int item)
+{
+    if(count==max)
+    {
+        printf("queue is full");
+    }
+    else
+    {
+        if(front==0)
+        {
+            front=max;
+        }
+        front=front-1;
+        a[front]=item;
+        count=count+1;
+    }
+}
+void dequeuefront()
+{
+    if(count==0)
+    {
+        printf("queue is empty");
+    }
+    else
+    {
+        if(front==max)
+        {
+            front=0;
+        }
+        printf("dequeued item is %d",a[front]);
+        front=front+1;
+        count=count-1;
+    }
+}
+void dequeuerear()
+{
+    if(count==0)
+    {
+        printf("queue is empty");
+    }
+    else
+    {
+        if(rear==0)
+        {
+            rear=max;
+        }
+        rear=rear-1;
+        printf("dequeued item is %d",a[rear]);
+        count=count-1;
+    }
+}
+void display()
+{
+    int i;
+    if(count==0)
+    {
+        printf("queue is empty\n");
+    }
+    else if(front<rear)
+    {
+        for(i=front;i<rear;i++)
+        {
+            printf("%d is in location %d\n",a[i],i);
+        }
+    }
+    else
+    {
+        for(i=max-1;i>=front;i--)
+        {
+            printf("%d is in location %d\n",a[i],i);
+        }
+        for(i=0;i<rear;i++)
+        {
+            printf("%d is in location %d\n",a[i],i);
+        }
+    }
+}
+void main()
+{
+    int i=0,ch=0,k;
+    do{
+        printf("enter 1.enqueuefront\n 2.enqueuerear\n 3.dequeuefront\n 4.dequeuerear\n 5.display\n");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1:
+            printf("enter element");
+            scanf("%d",&i);
+            enqueuefront(i);
+            break;
+            case 2:
+            printf("enter element");
+            scanf("%d",&i);
+            enqueuerear(i);
+            break;
+            case 3:
+            dequeuefront();
+            break;
+            case 4:
+            dequeuerear();
+            break;
+            case 5:
+            display();
+            break;
+            default:
+            printf("exit");
+        }
+        printf("\nenter 1 to continue 0 to exit");
+        scanf("%d",&k);
+    }while(k==1);
+}
