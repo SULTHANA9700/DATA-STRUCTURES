@@ -1,5 +1,5 @@
 #include<stdio.h>
-#define max 5
+#define max 4
 int rear=0,front=0,a[max],count=0;
 void enqueuerear(int item)
 {
@@ -71,29 +71,29 @@ void dequeuerear()
 }
 void display()
 {
-    int i;
-    if(count==0)
-    {
-        printf("queue is empty\n");
-    }
-    else if(front<rear)
-    {
-        for(i=front;i<rear;i++)
-        {
-            printf("%d is in location %d\n",a[i],i);
-        }
-    }
-    else
-    {
-        for(i=max-1;i>=front;i--)
-        {
-            printf("%d is in location %d\n",a[i],i);
-        }
-        for(i=0;i<rear;i++)
-        {
-            printf("%d is in location %d\n",a[i],i);
-        }
-    }
+int i;
+if(count==0)
+{
+printf("Empty Dqueue");
+}
+else if(front<rear)
+{
+for(i=front;i<rear;i++)
+{
+printf("%d  is in a[%d]\n",a[i],i);
+}
+}
+else
+{
+for(i=front;i<max;i++)
+{
+printf("%d is in a[%d]\n",a[i],i);
+}
+for(i=0;i<rear;i++)
+{
+printf("%d is in a[%d]\n",a[i],i);
+}
+}
 }
 void main()
 {
@@ -129,3 +129,4 @@ void main()
         scanf("%d",&k);
     }while(k==1);
 }
+
